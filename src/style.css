@@ -8,23 +8,83 @@
 
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  background-color: #302b27;
+  background-color: var(--blue);
   color: #fff;
-  font-family: Quicksand;
 }
 
 #app {
-  
-  
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center;  */
+
 }
 
 .df {
   display: flex;
   gap: 1rem;
 }
+
+ .vkozepre{ /*fejléc */
+  margin-right: -50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.fkozepre{
+margin-bottom: -50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);  
+}
+
+.vfkozepre{
+  position: absolute;
+  top: 50%;
+  margin-bottom: -50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.gombdoboz{
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gomb{
+  padding: 15px;
+  margin: 10px;
+  width: 200px;
+  background: rgba(0,0,0,0.5);
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #000000;
+}
+
+.gomb:hover{
+  filter: invert(100%);
+}
+
+.hirlev{
+  text-decoration: none;
+  margin-top: 30px;
+  font-family: Arial;
+}
+
+
