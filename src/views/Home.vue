@@ -1,5 +1,5 @@
 <script setup>
-
+  import LoginApp from '../components/LoginApp.vue';
 </script>
 
 <template>
@@ -12,6 +12,10 @@
   <div class="home-center">
     <h2 class="title">Bemutatom modern weblapom</h2>
   </div>
+
+  <div class="login-app">
+      <LoginApp />
+    </div>
 </template>
 
 <style scoped>
@@ -25,6 +29,14 @@
     overflow: hidden;
     z-index: -100;
   }
+
+  .login-app {
+  position: fixed;
+  bottom: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
   .title {
     font-size: 2rem;

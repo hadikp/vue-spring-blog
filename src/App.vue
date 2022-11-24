@@ -1,5 +1,6 @@
 <script setup>
 import { RouterView, RouterLink } from 'vue-router'
+import LoginApp from './components/LoginApp.vue';
 </script>
 
 <template>
@@ -17,15 +18,27 @@ import { RouterView, RouterLink } from 'vue-router'
       </ul>
     </nav>     
     <router-view /> 
+    <!-- <div class="login-app">
+      <LoginApp />
+    </div> -->
+    
   </main>
   <footer>
     <div class="footer-div">
-      &copy; 2021-2022 Hadik-Art, all rights reserved
+      &copy; 2022-2023 Hadik-Art, all rights reserved
     </div>
   </footer>
 </template>
 
 <style scoped>
+
+.login-app {
+  position: fixed;
+  bottom: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
   .main-container {
     /* display: flex; */
@@ -72,9 +85,6 @@ import { RouterView, RouterLink } from 'vue-router'
 
   .nav-ul {
     display: flex;
-    
-  
-    
   }
 
   .nav-ul-li {
@@ -83,7 +93,6 @@ import { RouterView, RouterLink } from 'vue-router'
     text-decoration: none;
     /* text-align: center; */
     padding: 15px;
-    
   }
 
   .nav-ul-hir {
