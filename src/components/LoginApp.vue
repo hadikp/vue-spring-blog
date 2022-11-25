@@ -1,11 +1,26 @@
 <script setup>
+  import { ref } from 'vue'
+
+  const email = ref('hadikp@gmail.com')
+  const password = ref('')
+  const error = ref('')
+
+  const login = () => {
+    if(!email.value || !password.value){
+      error.value = 'Töltsd ki mindkét mezőt!'
+      return
+    } 
+  }
 
 </script>
 
 <template>
   
-  <form class="login-form">
+  <form class="login-form" v-on:submit.prevent="login">
     <h1>User Login</h1>
+    <div class="error">
+      {{ error }}
+    </div>
     <input class="input-email" type="email" placeholder="email" v-model="email">
     <input class="input-pass" type="password" placeholder="password" v-model="password">
     <button>login</button>
@@ -23,7 +38,7 @@
     border: none;
     color: #fff;
     font-size: 1.5rem;
-    width: 10vw;
+    width: 20vw;
   }
 
   form input::placeholder {
@@ -40,12 +55,16 @@
     padding: 1rem;
   }
 
+  .error {
+    color: purple;
+  }
+
   .input-email {
     background-color: var(--blue);
     color: #fff;
     margin: 0.5rem;
     padding: 0.1rem;
-    width: 10vw;
+    width: 20vw;
   }
 
   .input-pass {
@@ -53,6 +72,6 @@
     color: #fff;
     margin: 0.5rem;
     padding: 0.1rem;
-    width: 10vw;
+    width: 20vw;
   }
 </style>
