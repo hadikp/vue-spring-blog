@@ -1,29 +1,45 @@
 <script setup>
   import { ref } from 'vue'
+  import axios from 'redaxios'
+  import { useUserStore } from '../../stores/user'
 
   const email = ref('hadikp@gmail.com')
   const password = ref('')
   const error = ref('')
+  const userData = useUserStore()
 
   const login = () => {
     if(!email.value || !password.value){
       error.value = 'Töltsd ki mindkét mezőt!'
       return
     } 
+
+  axios.post('api/user/login', {
+      email: email.value,
+      password: password.value
+    }).then(resp => {
+      console.log(resp.data);
+      userData.user = resp.data})
+    .catch(err => (error.value = 'Hibás bejelentkezés, próbáld meg újra!'))
+
   }
+
+  const add = () => {
+    alert('Működik!')
+  } 
 
 </script>
 
 <template>
   
-  <form class="login-form" v-on:submit.prevent="login">
+   <form v-on:submit.prevent="login" method="POST" action="" class="login-form">
     <h1>User Login</h1>
-    <div class="error">
+    <!-- <div class="error"> -->
       {{ error }}
-    </div>
+    <!-- </div> -->
     <input class="input-email" type="email" placeholder="email" v-model="email">
     <input class="input-pass" type="password" placeholder="password" v-model="password">
-    <button>login</button>
+    <button type="submit">login</button>
   </form>
 </template>
 
