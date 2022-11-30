@@ -1,6 +1,9 @@
 <script setup>
 import { RouterView, RouterLink } from 'vue-router'
 import LoginApp from './components/LoginApp.vue';
+import { useUserStore } from '../stores/user'
+
+const userData = useUserStore()
 </script>
 
 <template>
@@ -18,11 +21,8 @@ import LoginApp from './components/LoginApp.vue';
       </ul>
     </nav>     
     <router-view /> 
-    <!-- <div class="login-app">
-      <LoginApp />
-    </div> -->
-    
   </main>
+
   <footer>
     <div class="footer-div">
       &copy; 2022-2023 Hadik-Art, all rights reserved

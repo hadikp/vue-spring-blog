@@ -10,7 +10,7 @@
     <!-- <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" /> -->
     <!-- <Welcome /> -->
   <div class="home-center">
-    <h2 class="title">Bemutatom modern weblapom</h2>
+    <h2 class="title">Bemutatom a <strong>Böjtölős</strong> Blogom</h2>
   </div>
 
   <div class="login-app">
