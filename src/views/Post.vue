@@ -1,13 +1,34 @@
 <script setup>
   import { useUserStore } from '../../stores/user'
+  import { ref } from 'vue'
+  import axios from 'redaxios'
+
   const userData = useUserStore()
+  const title = ref('')
+  const description = ref('')
+  const content = ref('')
+
+  const sendPost = () => {
+    axios.post('api/post/create', {
+      title: title.value,
+      description: description.value,
+      content: content.value
+    }).then(resp => {
+      console.log(resp.data) })
+      
+      // router.push({path:'/post'})})
+    .catch(err => (error.value = 'Valami hiba történt, próbáld újra!'))
+  }
+
+  
 </script>
 
 <template>
   <main>
      <h1>Üdvözöllek {{ userData.user.userName }} </h1>
-    <form class="post-form" action="">
+    <form class="post-form" v-on:submit.prevent="sendPost">
         <input class="post-title" type="text" placeholder="Bejegyzés címe" v-model="title">
+        <input class="post-description" type="text" placeholder="A bejegyzés rövid tartalma" v-model="description">
         <textarea class="post-content" rows="13" placeholder="Bejegyzés tartalma" v-model="content"></textarea>
       <div class="buttons">
         <button class="buttons-cancel">mégse</button>
@@ -61,7 +82,7 @@
     padding: 1rem;
   }
 
-  .post-title, .post-content {
+  .post-title, .post-content, .post-description {
     color: #000;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 0.5rem;
