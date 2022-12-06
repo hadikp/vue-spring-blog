@@ -26,7 +26,7 @@
 <template>
   <main>
      <h1>Üdvözöllek {{ userData.user.userName }} </h1>
-    <form class="post-form" v-on:submit.prevent="sendPost">
+    <form class="post-form" v-on:submit.prevent="">  <!-- sendPost -->
         <input class="post-title" type="text" placeholder="Bejegyzés címe" v-model="title">
         <input class="post-description" type="text" placeholder="A bejegyzés rövid tartalma" v-model="description">
         <textarea class="post-content" rows="13" placeholder="Bejegyzés tartalma" v-model="content"></textarea>
