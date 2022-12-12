@@ -2,8 +2,8 @@ import axios from "redaxios"
 import { defineStore } from "pinia"
 
 export const usePostStore = defineStore('post', {
-  state: () => ({posts: {}, 
-}),/*
+  state: () => ({post: {} 
+})/*
 getters: {
   getPosts: (state) => state.posts,
 },
