@@ -54,9 +54,10 @@ const userData = useUserStore()
     color: orange;
     font-size: 1.5rem;
     position: absolute;
-    bottom: 0;
+    /* bottom: 0; */
     width: 100%;
     height: 2.5rem; 
+    margin-top: 1rem;
     text-align: center; 
 }
 

@@ -4,7 +4,9 @@
 
 <template>
   <h1>User page</h1>
-  <router-view />
+  
+
+  
 </template>
 
 <style scoped>

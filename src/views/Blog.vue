@@ -25,11 +25,15 @@ axios.get('api/post')
 </script>
 
 <template>
-  <div class="content">
+  <div class="card-content">
     <div class="error">
       <p v-if="error"> {{error}} </p>
     </div>
+    
     <article v-for="post in postData.post" :key="post.id">
+      <div class="article-date">
+        <h3> Published on: {{ date(post.createdAt).format('YYYY-MM-DD HH:mm') }} </h3>
+      
       <div class="article-head">
         <h3>{{ post.title }}</h3>
       </div>
@@ -37,11 +41,7 @@ axios.get('api/post')
         <!-- <img width="50" height="30" src="" alt="" /> -->
         <p> {{ post.content }} </p>
       </div>
-      <div class="article-date">
-        <h3> Published on: {{ date(post.createdAt).format('YYYY-MM-DD HH:mm') }} </h3>
-      </div>
-      <hr>
-      <p>----------------------------------------------------</p>
+    </div>
     </article>
 </div>
   
@@ -49,15 +49,31 @@ axios.get('api/post')
 
 <style scoped>
 
-.article-date {
-  margin-top: 0.2rem;
+.article-head, .article-body {
+  background-color: #fff;
+  width: 70vw;
+  padding: 0.5rem;
 }
-.content {
+
+.article-head {
+  color: blue;
+}
+
+.article-date {
+  background-color: rgba(211,234,248,255);
+  border-radius: 0.5rem;
+  box-shadow: 5px 10px #000;
+  margin-top: 2rem;
+  width: 75vw;
+  padding-bottom: 1.5rem;
+}
+.card-content {
+  color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  margin: 0.1rem;
   text-align: justify;
 }
 
