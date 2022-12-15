@@ -15,7 +15,11 @@
 
   <div class="login-app">
       <LoginApp />
-    </div>
+  </div>
+
+  <p class="full-side-p"></p>
+
+
 </template>
 
 <style scoped>
@@ -28,6 +32,10 @@
     left: 0;
     overflow: hidden;
     z-index: -100;
+  }
+
+  .full-side-p {
+   min-height: 90vh;
   }
 
   .login-app {

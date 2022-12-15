@@ -54,6 +54,7 @@ const userData = useUserStore()
     color: orange;
     font-size: 1.5rem;
     position: absolute;
+    flex-shrink: 0;
     /* bottom: 0; */
     width: 100%;
     height: 2.5rem; 
@@ -69,6 +70,8 @@ const userData = useUserStore()
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
+
+  
 
   .navigation {
     font-family: Arial;

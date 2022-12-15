@@ -66,6 +66,7 @@ axios.get('api/post')
   margin-top: 2rem;
   width: 75vw;
   padding-bottom: 1.5rem;
+  padding-left: 1rem;
 }
 .card-content {
   color: #000;

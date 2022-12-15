@@ -2,6 +2,7 @@
   import { useUserStore } from '../../stores/user'
   import { ref } from 'vue'
   import axios from 'redaxios'
+  import router from '../plugins/router'
 
   const userData = useUserStore()
   const title = ref('')
@@ -14,9 +15,8 @@
       description: description.value,
       content: content.value
     }).then(resp => {
-      console.log(resp.data) })
-      
-      // router.push({path:'/post'})})
+      console.log(resp.data),
+      router.push({path:'/blog'})})
     .catch(err => (error.value = 'Valami hiba történt, próbáld újra!'))
   }
 
@@ -26,7 +26,7 @@
 <template>
   <main>
      <h1>Üdvözöllek {{ userData.user.userName }} </h1>
-    <form class="post-form" v-on:submit.prevent="">  <!-- sendPost -->
+    <form class="post-form" v-on:submit.prevent="sendPost">  <!-- sendPost -->
         <input class="post-title" type="text" placeholder="Bejegyzés címe" v-model="title">
         <input class="post-description" type="text" placeholder="A bejegyzés rövid tartalma" v-model="description">
         <textarea class="post-content" rows="13" placeholder="Bejegyzés tartalma" v-model="content"></textarea>
