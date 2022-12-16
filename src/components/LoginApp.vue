@@ -9,18 +9,6 @@
   const error = ref('')
   const userData = useUserStore()
 
-  
-
-  /* const checkUser = () => {
-    let isLoggedIn = true
-    if(isLoggedIn){
-       console.log("logged in")
-       router.push({name: 'blog'});
-    } else {
-      console.log("Not logged in")
-    }
-  }  */
-
   const login = () => {
     if(!email.value || !password.value){
       error.value = 'Töltsd ki mindkét mezőt!'
