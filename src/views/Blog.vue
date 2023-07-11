@@ -40,7 +40,8 @@ axios.get('api/post')
       <div class="article-body">
         <!-- <img width="50" height="30" src="" alt="" /> -->
         <p> {{ post.content }} </p>
-        <font-awesome-icon class="router-font-awesome" icon="edit" />
+        <router-link :to="{name: 'update-post'}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
+        <!-- params: {id: element.cardId} -->
       </div>
     </div>
     </article>
@@ -82,4 +83,9 @@ axios.get('api/post')
 .error {
     color: orange;
   }
+.edit-icon {
+  text-decoration: none;
+    color: #000;
+    margin-right: 0.5rem;
+}
 </style>

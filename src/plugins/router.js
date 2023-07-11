@@ -7,6 +7,7 @@ const routes = [
   {path: '/post', name: 'post', component: () => import('../views/Post.vue')},
   {path: '/blog', name: 'blog', component: () => import('../views/Blog.vue')},
   {path: '/hirlevel', name: 'hirlevel', component: () => import('../views/Hirlevel.vue')},
+  {path: '/updatePost', name: 'update-post', component: () => import('../views/UpdatePost.vue')}
 ]
 
 const router = createRouter({
