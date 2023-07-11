@@ -19,6 +19,6 @@ import { Tooltip, Toast, Popover, Form } from 'bootstrap'; */
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
-  .use(createPinia())
   .use(router)
+  .use(createPinia())
   .mount('#app')

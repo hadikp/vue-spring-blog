@@ -18,7 +18,6 @@ function date(string) {
 axios.get('api/post')
     .then(resp => {
       postData.post = resp.data;
-      console.log((postData.post).toString)
      })
     .catch(err => (error.value = 'Valami hiba történt, próbáld újra!'))
 
@@ -40,8 +39,8 @@ axios.get('api/post')
       <div class="article-body">
         <!-- <img width="50" height="30" src="" alt="" /> -->
         <p> {{ post.content }} </p>
-        <router-link :to="{name: 'update-post'}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
-        <!-- params: {id: element.cardId} -->
+        <router-link :to="{name: 'update-post', params: {id: post.id}}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
+        
       </div>
     </div>
     </article>
@@ -87,5 +86,8 @@ axios.get('api/post')
   text-decoration: none;
     color: #000;
     margin-right: 0.5rem;
+}
+.edit-icon:hover {
+  color: var(--grey);
 }
 </style>

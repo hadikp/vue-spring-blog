@@ -1,25 +1,50 @@
-<script setup>
-import { ref } from 'vue';
+<script>
 import axios from 'redaxios';
 import router from '../plugins/router';
 
-const title = ref("")
-const description = ref("")
-const content = ref("")
-
+export default {
+    data() {
+      return {
+        form: {
+          title: '',
+          description: '',
+          content: '',
+        }
+      }
+    },
+    async created() { //a card form-ba töltése az adatbázisból
+      try {
+        const resp = await axios.get(`api/post/${this.$route.params.id}`)
+        this.form = resp.data
+        console.log(resp.data)
+      } catch (e) {
+        error.value = 'Valami hiba történt, próbáld meg újra'
+      }
+    }, 
+    methods: {
+      update() {
+      axios.put(`http://localhost:8080/api/post/${this.$route.params.id}`, //card update
+       this.form ).then(resp => {
+        console.log(resp.data)
+        router.push({name:'board'})
+      })
+        .catch(err => (error.value = 'Valami hiba történt az Update-nél, próbáld meg újra'))
+      }
+   }
+  }
 
 </script>
 
 <template>
    <main>
      <h1>Update Post</h1>
-    <form class="post-form" v-on:submit.prevent="sendPost">  <!-- sendPost -->
-        <input class="post-title" type="text"  v-model="title">
-        <input class="post-description" type="text"  v-model="description">
-        <textarea class="post-content" rows="13"  v-model="content"></textarea>
+    <form class="post-form" v-on:submit.prevent="update()">  <!-- sendPost -->
+        <input class="post-title" type="text"  v-model="form.title">
+        <input class="post-description" type="text"  v-model="form.description">
+        <textarea class="post-content" rows="13"  v-model="form.content"></textarea>
       <div class="buttons">
         <button class="buttons-cancel">mégse</button>
-        <button class="buttons-save">mentés</button>
+        <button class="buttons-update">update</button>
       </div>
     </form>
 </main>
@@ -31,7 +56,7 @@ const content = ref("")
   margin: 1rem;
 }
 
-.buttons-cancel, .buttons-save {
+.buttons-cancel, .buttons-update {
   background-color: #ff2b75;
   box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
   border: none;
@@ -47,7 +72,7 @@ const content = ref("")
   margin: 0.1rem 0.1rem;
 }
 
-.buttons-save {
+.buttons-update {
   margin-left: 2rem;
   background-color: orange;
 }
