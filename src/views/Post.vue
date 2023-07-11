@@ -13,7 +13,8 @@
     axios.post('api/post/create', {
       title: title.value,
       description: description.value,
-      content: content.value
+      content: content.value,
+      userId: userData.user.id
     }).then(resp => {
       console.log(resp.data),
       router.push({path:'/blog'})})

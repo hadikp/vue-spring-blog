@@ -40,6 +40,7 @@ axios.get('api/post')
       <div class="article-body">
         <!-- <img width="50" height="30" src="" alt="" /> -->
         <p> {{ post.content }} </p>
+        <font-awesome-icon class="router-font-awesome" icon="edit" />
       </div>
     </div>
     </article>

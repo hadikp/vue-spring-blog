@@ -10,3 +10,7 @@ A program indítása:
 ```shell
 npm run dev
 ```
+Visual studio code commit:
+```shell
+Commit üzenet majd ctrl Enter
+```
