@@ -14,7 +14,7 @@ export default {
     },
     async created() { //a card form-ba töltése az adatbázisból
       try {
-        const resp = await axios.get(`api/post/${this.$route.params.id}`)
+        const resp = await axios.get(`http://localhost:8080/api/post/${this.$route.params.id}`)
         this.form = resp.data
         console.log(resp.data)
       } catch (e) {
@@ -26,7 +26,7 @@ export default {
       axios.put(`http://localhost:8080/api/post/${this.$route.params.id}`, //card update
        this.form ).then(resp => {
         console.log(resp.data)
-        router.push({name:'board'})
+        router.push({name:'blog'})
       })
         .catch(err => (error.value = 'Valami hiba történt az Update-nél, próbáld meg újra'))
       }
@@ -38,7 +38,10 @@ export default {
 <template>
    <main>
      <h1>Update Post</h1>
-    <form class="post-form" v-on:submit.prevent="update()">  <!-- sendPost -->
+    <form class="post-form" v-on:submit.prevent="update">  <!-- sendPost -->
+      <div class="error">
+          {{ error }}
+        </div>
         <input class="post-title" type="text"  v-model="form.title">
         <input class="post-description" type="text"  v-model="form.description">
         <textarea class="post-content" rows="13"  v-model="form.content"></textarea>
