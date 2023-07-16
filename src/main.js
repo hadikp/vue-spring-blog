@@ -7,7 +7,6 @@ import App from './App.vue'
 import router from './plugins/router'
 import { createPinia } from 'pinia'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { VuePaginationTw } from 'vue-pagination-tw'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -21,7 +20,6 @@ import { Tooltip, Toast, Popover, Form } from 'bootstrap'; */
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
-  .component('Vue-Pagination-Tw', VuePaginationTw)
   .use(router)
   .use(createPinia())
   .mount('#app')

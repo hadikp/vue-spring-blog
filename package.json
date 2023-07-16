@@ -20,7 +20,6 @@
     "pinia": "^2.0.27",
     "redaxios": "^0.5.1",
     "vue": "^3.3.4",
-    "vue-pagination-tw": "^0.1.2",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
