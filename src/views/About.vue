@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1>About page</h1>
+  <h1 class="text-primary">About page</h1>
 </template>
 
 <style scoped>
