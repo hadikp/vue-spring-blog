@@ -12,5 +12,5 @@ npm run dev
 ```
 Visual studio code commit:
 ```shell
-Commit üzenet majd ctrl Enter
+ctrl shift G, Commit üzenet, majd ctrl Enter és Yes
 ```
