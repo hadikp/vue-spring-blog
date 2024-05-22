@@ -53,13 +53,13 @@ const startPage = computed( () => {
     })
 
 const endPage = computed( () => {
-    return Math.min(startPage + props.maxVisibleButtons - 1, props.totalPages);
+    return Math.min(startPage.value + props.maxVisibleButtons - 1, props.totalPages) ; 
   })
 
 const pages = computed( () => {
-  for (let i = startPage; i <= endPage; i += 1){
+  for (let i = startPage.value; i <= endPage.value; i += 1){
     range.push({name: i}) //isDisabled: i === props.currentPage
-    console.log(range)
+    console.log(endPage.value)
   }
   console.log(range)
   return range
@@ -73,10 +73,10 @@ const isInLastPage = computed( () => {
   return props.currentPage === props.totalPages
 })
 
-function onClickFirstPage(){ return 1 }
-function onClickPreviousPage(){ return props.currentPage - 1 }
-function onClickPage(){ return page }
-function onClickNextPage(){ return props.currentPage + 1 }
+function onClickFirstPage(){ emit('pagechanged', 1) }
+function onClickPreviousPage(){ emit('pagechanged', props.currentPage - 1) }
+function onClickPage(){ emit('pagechanged', page) }
+function onClickNextPage(){ emit('pagechanged', props.currentPage + 1) }
 function onClickLastPage(){ emit('pagechanged', props.totalPages) }
 function isPageActive(page) { return props.currentPage === page }
 
