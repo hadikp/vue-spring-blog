@@ -1,8 +1,8 @@
 <script setup>
-import { reactive, computed } from 'vue';
+import { reactive, computed, defineEmits } from 'vue';
 
-const emit = defineEmits(['inFocus', 'submit'])
-const range = []
+const emit = defineEmits(['pagechanged'])
+const range = reactive([])
 
 /* const data = reactive({
   names: [
@@ -25,6 +25,10 @@ const props = defineProps({
       type: Number,
       required: true,
     },
+    total: {
+      type: Number,
+      required: true
+    },
     perPage: {
       type: Number,
       required: true
@@ -42,7 +46,7 @@ const startPage = computed( () => {
     }
     // When on the last page
     if (props.currentPage === props.totalPages) {
-      return props.totalPages - props.maxVisibleButtons - 1;
+      return props.totalPages - props.maxVisibleButtons + 1;
     }
      // When inbetween
     return props.currentPage - 1;
@@ -53,16 +57,26 @@ const endPage = computed( () => {
   })
 
 const pages = computed( () => {
-  for (let i = startPage; i <= endPage; i+=1){
-    range.push({name: i, isDisabled: i === props.currentPage})
+  for (let i = startPage; i <= endPage; i += 1){
+    range.push({name: i}) //isDisabled: i === props.currentPage
+    console.log(range)
   }
+  console.log(range)
   return range
 })
 
-function onClickFirstPage(){ emit('pagechanged', 1) }
-function onClickPreviousPage(){ emit('pagechanged', props.currentPage - 1) }
-function onClickPage(){ emit('pagechanged', page) }
-function onClickNextPage(){ emit('pagechanged', props.currentPage + 1) }
+const isInFirstPage = computed( () => {
+  return props.currentPage === 1
+})
+
+const isInLastPage = computed( () => {
+  return props.currentPage === props.totalPages
+})
+
+function onClickFirstPage(){ return 1 }
+function onClickPreviousPage(){ return props.currentPage - 1 }
+function onClickPage(){ return page }
+function onClickNextPage(){ return props.currentPage + 1 }
 function onClickLastPage(){ emit('pagechanged', props.totalPages) }
 function isPageActive(page) { return props.currentPage === page }
 
@@ -73,7 +87,7 @@ function isPageActive(page) { return props.currentPage === page }
     <li class="pagination-item"><button type="button" @click="onClickFirstPage" :disabled="isInFirstPage">> First</button> </li>
     <li class="pagination-item"><button type="button" @click="onClickPreviousPage" :disabled="isInFirstPage">> Previous</button> </li>
     <!-- Visible Buttons Start -->
-    <li class="pagination-item" v-for="page in pages" :key="page.name">
+    <li class="pagination-item" v-for="page in pages" :key="page.Number">
       <button type="button" @click="onClickPage(page.name)"
          :disabled="page.isDisabled" :class="{ active: isPageActive(page.name) }"> {{ page.name }} </button>
     </li>

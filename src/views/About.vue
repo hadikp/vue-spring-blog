@@ -16,8 +16,9 @@ function onPageChange(page) {
   <div class="paginator">
     <pagination
       :totalPages="10"
-      :perPage="10"
-      :currentPage=1
+      :total="113"
+      :perPage="5"
+      :currentPage="currentPage"
       @pagechanged="onPageChange" />
   </div>
   
@@ -25,10 +26,11 @@ function onPageChange(page) {
 
 <style scoped>
   .paginator {
-    position: fixed;
-    bottom: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
   }
 </style>
