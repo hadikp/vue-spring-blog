@@ -1,11 +1,13 @@
 <script setup>
+
+import { ref } from 'vue';
 import Pagination from '../components/Pagination.vue';
 
-let currentPage = 1
+let currentPage = ref(1)
 
 function onPageChange(page) {
    console.log(page)
-   currentPage = page;
+   return currentPage.value = page;
 }
 
 
@@ -15,11 +17,13 @@ function onPageChange(page) {
   <h1 class="text-primary">About page</h1>
   <div class="paginator">
     <pagination
-      :totalPages="10"
+      :totalPages="11"
       :total="113"
       :perPage="5"
-      :currentPage="currentPage"
-      @pagechanged="onPageChange" />
+      :current-page="currentPage"
+      @pagechanged="onPageChange"
+></pagination>
+ 
   </div>
   
 </template>

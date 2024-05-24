@@ -2,7 +2,7 @@
 import { reactive, computed, defineEmits } from 'vue';
 
 const emit = defineEmits(['pagechanged'])
-const range = reactive([])
+
 
 /* const data = reactive({
   names: [
@@ -57,9 +57,9 @@ const endPage = computed( () => {
   })
 
 const pages = computed( () => {
+  const range = []
   for (let i = startPage.value; i <= endPage.value; i += 1){
-    range.push({name: i}) //isDisabled: i === props.currentPage
-    console.log(endPage.value)
+    range.push({name: i, isDisabled: i === props.currentPage}) 
   }
   console.log(range)
   return range
@@ -75,7 +75,7 @@ const isInLastPage = computed( () => {
 
 function onClickFirstPage(){ emit('pagechanged', 1) }
 function onClickPreviousPage(){ emit('pagechanged', props.currentPage - 1) }
-function onClickPage(){ emit('pagechanged', page) }
+function onClickPage(page){ emit('pagechanged', page) }
 function onClickNextPage(){ emit('pagechanged', props.currentPage + 1) }
 function onClickLastPage(){ emit('pagechanged', props.totalPages) }
 function isPageActive(page) { return props.currentPage === page }
@@ -87,7 +87,7 @@ function isPageActive(page) { return props.currentPage === page }
     <li class="pagination-item"><button type="button" @click="onClickFirstPage" :disabled="isInFirstPage">> First</button> </li>
     <li class="pagination-item"><button type="button" @click="onClickPreviousPage" :disabled="isInFirstPage">> Previous</button> </li>
     <!-- Visible Buttons Start -->
-    <li class="pagination-item" v-for="page in pages" :key="page.Number">
+    <li class="pagination-item" v-for="page in pages" :key="page.name">
       <button type="button" @click="onClickPage(page.name)"
          :disabled="page.isDisabled" :class="{ active: isPageActive(page.name) }"> {{ page.name }} </button>
     </li>
