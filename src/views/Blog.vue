@@ -5,10 +5,18 @@ import { ref } from 'vue'
 import { usePostStore } from '../../stores/post'
 import moment from 'moment'
 import "moment/locale/hu"
+import Pagination from '../components/Pagination.vue';
+
+let currentPage = ref(1)
 
 const error = ref('')
 const postData = usePostStore()
 const topics = ref({ data: { data: [] } });
+
+function onPageChange(page) {
+   console.log(page)
+   return currentPage.value = page;
+}
 
 function date(string) {
     moment.locale("hu");
@@ -29,26 +37,43 @@ axios.get('api/post')
       <p v-if="error"> {{error}} </p>
     </div>
     
+    <div class="paginator">
+    <pagination
+      :totalPages="111"
+      :perPage="10"
+      :current-page="currentPage"
+      @pagechanged="onPageChange">
+
     <article v-for="post in postData.post" :key="post.id">
-      <div class="article-date">
-        <h3> Published on: {{ date(post.createdAt).format('YYYY-MM-DD HH:mm') }} </h3>
+        <div class="article-date">
+          <h3> Published on: {{ date(post.createdAt).format('YYYY-MM-DD HH:mm') }} </h3>
       
-      <div class="article-head">
-        <h3>{{ post.title }}</h3>
+        <div class="article-head">
+          <h3>{{ post.title }}</h3>
+        </div>
+        <div class="article-body">
+          <!-- <img width="50" height="30" src="" alt="" /> -->
+          <p> {{ post.content }} </p>
+          <router-link :to="{name: 'update-post', params: {id: post.id}}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
+          
+        </div>
       </div>
-      <div class="article-body">
-        <!-- <img width="50" height="30" src="" alt="" /> -->
-        <p> {{ post.content }} </p>
-        <router-link :to="{name: 'update-post', params: {id: post.id}}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
-        
-      </div>
-    </div>
     </article>
+  </pagination>
+  </div>
 </div>
   
 </template>
 
 <style scoped>
+.paginator {
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 160px;
+  }
 
 .article-head, .article-body {
   background-color: #fff;

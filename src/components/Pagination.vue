@@ -25,10 +25,6 @@ const props = defineProps({
       type: Number,
       required: true,
     },
-    total: {
-      type: Number,
-      required: true
-    },
     perPage: {
       type: Number,
       required: true
@@ -61,7 +57,6 @@ const pages = computed( () => {
   for (let i = startPage.value; i <= endPage.value; i += 1){
     range.push({name: i, isDisabled: i === props.currentPage}) 
   }
-  console.log(range)
   return range
 })
 
