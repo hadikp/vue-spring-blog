@@ -5,6 +5,9 @@ import Pagination from '../components/Pagination.vue';
 
 let currentPage = ref(1)
 
+const totalPages = 12
+const perPage = 5
+
 function onPageChange(page) {
    console.log(page)
    return currentPage.value = page;
@@ -12,12 +15,12 @@ function onPageChange(page) {
 
 const datas = ref({
   name: [
-               { id: 1, name: 'ABC CBA' },
-               { id: 2, name: 'XYZ ZYX' },
-               { id: 3, name: 'MNO ONM' },
-               { id: 4, name: 'PQR RQP' },
-               { id: 5, name: 'AAA AAA' },
-               { id: 6, name: 'EFG GFE' },
+               { id: 1, name: 'Peter1' },
+               { id: 2, name: 'Peter2' },
+               { id: 3, name: 'Peter3' },
+               { id: 4, name: 'Peter4' },
+               { id: 5, name: 'Peter5' },
+               { id: 6, name: 'Peter6' },
                { id: 7, name: 'Peter7' },
                { id: 8, name: 'Peter8' },
                { id: 9, name: 'Peter9' },
@@ -34,11 +37,11 @@ const datas = ref({
   <h1 class="text-primary">About page</h1>
   <div class="paginator">
     <ul>
-      <li v-for="data in datas.name" :key="data.id"> {{ data.name }} </li>
+      <li class="paginator-li" v-for="data in datas.name" :key="data.id"> {{ data.name }} </li>
     </ul>
     <pagination
-      :totalPages="12"
-      :perPage="5"
+      :totalPages=totalPages
+      :perPage=perPage
       :current-page="currentPage"
       @pagechanged="onPageChange" />
  
@@ -52,7 +55,11 @@ const datas = ref({
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: white;
     margin-top: 60px;
+  }
+
+  .paginator-li{
+    list-style-type: none;
   }
 </style>
