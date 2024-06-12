@@ -1,20 +1,20 @@
 <script setup>
 
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Pagination from '../components/Pagination.vue';
 
 let currentPage = ref(1)
 
 const totalPages = 12
-const perPage = 5
+const perPage = 2
 
 function onPageChange(page) {
    console.log(page)
    return currentPage.value = page;
 }
 
-const datas = ref({
-  name: [
+const datas = ref(
+            [
                { id: 1, name: 'Peter1' },
                { id: 2, name: 'Peter2' },
                { id: 3, name: 'Peter3' },
@@ -28,8 +28,13 @@ const datas = ref({
                { id: 11, name: 'Peter11' },
                { id: 12, name: 'Peter12' }
             ]
-})
+)
 
+const paginatedItems = computed ( () => {
+  const start = (currentPage.value - 1) * perPage
+  const end = start + perPage
+  return datas.value.slice(start, end)
+})
 
 </script>
 
@@ -37,7 +42,7 @@ const datas = ref({
   <h1 class="text-primary">About page</h1>
   <div class="paginator">
     <ul>
-      <li class="paginator-li" v-for="data in datas.name" :key="data.id"> {{ data.name }} </li>
+      <li class="paginator-li" v-for="data in paginatedItems" :key="data.id"> {{ data.name }} </li>
     </ul>
     <pagination
       :totalPages=totalPages
