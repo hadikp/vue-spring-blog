@@ -1,13 +1,15 @@
 <script setup>
 import { mapActions } from 'pinia'
 import axios from 'redaxios'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { usePostStore } from '../../stores/post'
 import moment from 'moment'
 import "moment/locale/hu"
 import Pagination from '../components/Pagination.vue';
 
 let currentPage = ref(1)
+const totalPages = 12
+const perPage = 4
 
 const error = ref('')
 const postData = usePostStore()
@@ -29,6 +31,11 @@ axios.get('api/post')
      })
     .catch(err => (error.value = 'Valami hiba történt, próbáld újra!'))
 
+const paginatedItems = computed ( () => {
+  const start = (currentPage.value - 1) * perPage
+  const end = start + perPage
+  return postData.post.slice(start, end)
+})
 </script>
 
 <template>
@@ -36,15 +43,7 @@ axios.get('api/post')
     <div class="error">
       <p v-if="error"> {{error}} </p>
     </div>
-    
-    <div class="paginator">
-    <pagination
-      :totalPages="111"
-      :perPage="10"
-      :current-page="currentPage"
-      @pagechanged="onPageChange">
-
-    <article v-for="post in postData.post" :key="post.id">
+    <article v-for="post in paginatedItems" :key="post.id">
         <div class="article-date">
           <h3> Published on: {{ date(post.createdAt).format('YYYY-MM-DD HH:mm') }} </h3>
       
@@ -59,8 +58,15 @@ axios.get('api/post')
         </div>
       </div>
     </article>
-  </pagination>
-  </div>
+
+    <div class="paginator">
+      <pagination
+        :totalPages=totalPages
+        :perPage=perPage
+        :current-page="currentPage"
+        @pagechanged="onPageChange" />
+    </div>
+  
 </div>
   
 </template>
@@ -72,7 +78,7 @@ axios.get('api/post')
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 160px;
+    
   }
 
 .article-head, .article-body {
