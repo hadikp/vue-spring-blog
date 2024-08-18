@@ -8,7 +8,7 @@ import "moment/locale/hu"
 import Pagination from '../components/Pagination.vue';
 
 let currentPage = ref(1)
-const totalPages = 12
+const totalPages = 6
 const perPage = 4
 
 const error = ref('')
@@ -52,7 +52,7 @@ const paginatedItems = computed ( () => {
         </div>
         <div class="article-body">
           <!-- <img width="50" height="30" src="" alt="" /> -->
-          <p> {{ post.content }} </p>
+          <p v-html="post.content"></p>
           <router-link :to="{name: 'update-post', params: {id: post.id}}"><font-awesome-icon class="edit-icon" icon="edit" /></router-link>
           
         </div>
